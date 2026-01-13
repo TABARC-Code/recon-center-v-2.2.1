@@ -1,0 +1,41 @@
+/*
+ 
+<p align="center">
+  <img src=".branding/tabarc-icon.svg" width="180" alt="TABARC-Code Icon">
+</p>
+
+Stylesheet notes:
+
+ Dark UI because recon work tends to live there.
+ Colours chosen for legibility, not aesthetics.
+
+ Yes, the CSS is flat.
+ Yes, variables could be split more.
+ It's fine.
+
+ If you are tempted to introduce a CSS framework,
+ please go for a walk first.
+*/
+
+body{background:#0b0d10;color:#e8eef7;font-family:system-ui;padding:10px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.logo{width:26px;height:26px;background:#4ea1ff;color:#000;font-weight:800;display:grid;place-items:center;border-radius:6px}
+.tabs{display:flex;gap:6px;margin-bottom:10px}
+.tab-btn{background:transparent;border:none;color:#8b97a7;cursor:pointer}
+.tab-btn.active{color:#4ea1ff;font-weight:600}
+.tab{display:none}
+.tab.active{display:block}
+.card{background:#12161c;border:1px solid #232a33;border-radius:6px;padding:10px;margin-bottom:8px}
+.row{display:flex;align-items:center}
+.between{justify-content:space-between}
+.grow{flex:1}
+.gap{gap:8px}
+.list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.item{background:#0f1319;border:1px solid #232a33;padding:6px;border-radius:4px;display:flex;justify-content:space-between}
+.btn{background:#1b2230;border:1px solid #232a33;color:#e8eef7;padding:4px 8px;border-radius:4px;cursor:pointer}
+.btn.primary{background:rgba(78,161,255,.2)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.danger{color:#ff5b5b}
+.tiny-toggle{font-size:11px;color:#8b97a7}
+.label{font-size:11px;color:#8b97a7;margin-bottom:4px}
+.hint{font-size:10px;color:#8b97a7}

@@ -1,0 +1,151 @@
+<!--
+ TABARC Recon Command Center
+
+ This HTML is deliberately dull.
+ No frameworks, no magic.
+
+ Side panels are weird environments.
+ Predictability beats clever UI tricks.
+
+ TODO maybe:
+ - keyboard shortcuts
+ - collapsible sections
+ - a proper empty state for first-time users
+-->
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TABARC Recon v2.2.1</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <div class="logo">T</div>
+    <div>
+      <div class="title">Recon Center</div>
+      <div class="subtitle">v2.2.1 · Side Panel</div>
+    </div>
+  </div>
+  <select id="projectSelect"></select>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="builder">Builder</button>
+  <button class="tab-btn" data-tab="batch">Batch</button>
+  <button class="tab-btn" data-tab="tools">Tools</button>
+</nav>
+
+<main>
+<section id="builder" class="tab active">
+  <div class="card">
+    <label class="label">Target Scope</label>
+    <div class="row gap">
+      <input id="targetInput" placeholder="example.com">
+      <button id="grabTargetBtn" class="btn">Grab</button>
+    </div>
+    <label class="tiny-toggle">
+      <input type="checkbox" id="lintToggle" checked>
+      Guardrails (lint)
+    </label>
+  </div>
+
+  <div class="card">
+    <label class="label">Query</label>
+    <select id="engineSelect">
+      <option value="google">Google</option>
+      <option value="bing">Bing</option>
+      <option value="duck">DuckDuckGo</option>
+      <option value="wayback">Wayback</option>
+      <option value="crt">crt.sh</option>
+    </select>
+    <textarea id="query" placeholder="Build query…"></textarea>
+    <div id="operators"></div>
+    <div class="row gap">
+      <button id="searchBtn" class="btn primary grow">Search</button>
+      <button id="saveBtn" class="btn">Save</button>
+    </div>
+    <div id="status" class="hint"></div>
+  </div>
+
+  <div class="card">
+    <label class="label">Saved Queries</label>
+    <ul id="savedList" class="list"></ul>
+  </div>
+</section>
+
+<section id="batch" class="tab">
+  <div class="card">
+    <label class="label">Template Pack</label>
+    <select id="packSelect"></select>
+    <div class="row between">
+      <span id="batchCount" class="label">0 templates</span>
+      <button id="batchRunBtn" class="btn primary">Start Stepper</button>
+    </div>
+  </div>
+
+  <div id="batchStepper" class="card hidden">
+    <div class="label">Batch Stepper</div>
+    <div class="row gap">
+      <button id="stepNextBtn" class="btn primary grow">Next</button>
+      <button id="stepSkipBtn" class="btn ghost">Skip</button>
+      <button id="stepStopBtn" class="btn danger ghost">Stop</button>
+    </div>
+    <code id="stepPreview"></code>
+  </div>
+
+  <div class="card">
+    <ul id="packList" class="list"></ul>
+  </div>
+</section>
+
+<section id="tools" class="tab">
+  <div class="card">
+    <label class="label">Defensive Canary Token</label>
+    <div class="row gap">
+      <input id="canaryDisplay" readonly>
+      <button id="canaryGenBtn" class="btn">Gen</button>
+    </div>
+    <button id="canaryCreateQueryBtn" class="btn primary" disabled>Create Query</button>
+  </div>
+
+  <div class="card">
+    <label class="label">Import Template Pack (remote)</label>
+    <div class="row gap">
+      <input id="remoteUrl" placeholder="https://raw.githubusercontent.com/.../pack.json">
+      <button id="remoteImportBtn" class="btn">Fetch</button>
+    </div>
+    <div class="hint">Allowed hosts only. Pack is validated before import.</div>
+  </div>
+
+  <div class="card">
+    <label class="label">Data</label>
+    <div class="row gap wrap">
+      <button id="exportBtn" class="btn grow">Export JSON</button>
+      <label class="btn file grow">
+        Import JSON
+        <input id="importFile" type="file" accept="application/json">
+      </label>
+      <button id="deleteProjectBtn" class="btn danger grow">Delete Project</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<template id="savedItemTemplate">
+  <li class="item">
+    <span class="itemQuery"></span>
+    <div class="itemActions">
+      <button class="btn tiny ghost act-use">Load</button>
+      <button class="btn tiny danger ghost act-del">X</button>
+    </div>
+  </li>
+</template>
+
+<script src="panel.js"></script>
+</body>
+</html>
